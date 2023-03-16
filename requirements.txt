@@ -1,0 +1,3 @@
+gerund==0.1.0
+PyYAML==6.0
+termcolor==2.2.0
