@@ -3,6 +3,7 @@ This file defines the entry point for building ktools locally and installing Oas
 """
 import os
 import shutil
+import argparse
 
 from water_seller.install.oasislmf.steps.clone_repos import CloneRepos
 from water_seller.install.oasislmf.steps.compile_ktools import CompileKtools
@@ -14,6 +15,18 @@ def main() -> None:
     """
     The main function for building ktools and installing oasislmf.
     """
+    parser = argparse.ArgumentParser(description="Example script using argparse")
+
+    # Add the extra flag, store_true sets the value to True if the flag is present, otherwise False
+    parser.add_argument(
+        "--extra",
+        dest="extra",
+        action="store_true",
+        help="If extra OasisLMF requirements are installed Use this flag to set the value to True"
+    )
+
+    args = parser.parse_args()
+
     root_path: str = str(os.getcwd())
     stash_path: str = str(os.path.join(root_path, "stash"))
 
@@ -42,5 +55,7 @@ def main() -> None:
     clone_oasislmf.clone_repo()
 
     install_oasislmf: InstallOasisLmf = InstallOasisLmf(root_path=clone_oasislmf.package_path,
-                                                        ktools_path=clone_ktools.package_path)
+                                                        ktools_path=clone_ktools.package_path,
+                                                        extra=args.extra)
     install_oasislmf.install()
+    shutil.rmtree(stash_path)
