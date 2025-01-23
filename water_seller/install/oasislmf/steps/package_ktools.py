@@ -16,6 +16,11 @@ class PackageKtools:
         platform: the platform the ktools are being compiled for
     """
     def __init__(self, ktools_path: str) -> None:
+        """
+        The constructor for the PackageKtools class.
+
+        :param ktools_path: the path to the ktools directory
+        """
         self.ktools_path: str = ktools_path
         self.platform: str = util.get_platform().replace("-", "_").replace(".", "_")
 

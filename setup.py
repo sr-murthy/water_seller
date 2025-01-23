@@ -18,7 +18,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "ws-install=water_seller.install.oasislmf.entry_points.install:main"
+            "ws-install-oasislmf=water_seller.install.oasislmf.entry_points.install:main"
         ]
     },
 )

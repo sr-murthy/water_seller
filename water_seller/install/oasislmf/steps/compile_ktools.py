@@ -13,13 +13,14 @@ class CompileKtools:
     Attributes:
         ktools_path: the path to the ktools directory
     """
-    def __init__(self, ktools_path: str) -> None:
+    def __init__(self, ktools_path: str, disable_parquet: bool = False) -> None:
         """
         The constructor for the CompileKtools class.
 
         :param ktools_path: the path to the ktools directory
         """
         self.ktools_path: str = ktools_path
+        self.disable_parquet = disable_parquet
 
     def compile(self) -> None:
         """
@@ -29,7 +30,7 @@ class CompileKtools:
         """
         TerminalCommand(f"cd {self.ktools_path} && ./autogen.sh").wait()
         TerminalCommand(
-            f"cd {self.ktools_path} && ./configure --enable-osx --enable-o3 --prefix={self.bin_path}"
+            f"cd {self.ktools_path} && ./configure --enable-osx --enable-o3 {'--disable-parquet' if self.disable_parquet else ''} --prefix={self.bin_path}"
         ).wait()
         TerminalCommand(f"cd {self.ktools_path} && make check").wait()
         TerminalCommand(f"cd {self.ktools_path} && make install").wait()
