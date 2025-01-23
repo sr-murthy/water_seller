@@ -60,7 +60,7 @@ def main() -> None:
 
     clone_ktools: CloneRepos = CloneRepos(
         root_path=root_path,
-        git_url="https://github.com/OasisLMF/ktools.git",
+        git_url="https://github.com/sr-murthy/ktools.git",
         package_name="ktools",
         branch=args.ktools_branch
     )
