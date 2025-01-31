@@ -14,8 +14,8 @@ pip install git+https://github.com/OasisLMF/water_seller.git
 Water seller currently supports the following processes:
 
 ### Local OasisLMF Installation
-This process installs the OasisLMF package locally and installs the required dependencies. This is essential if you
-want to run OasisLMF on a Mac ARM64 machine. To install the package locally use the following command:
+This process installs the OasisLMF package, including ktools, locally and installs the required dependencies. Note that ktools is a C++ component and is built from sources - the build options for `configure` and `make` can be customised with this tool with the following extra command line options (after the `--extra` option):
+
 
 ```bash
 ws-install-oasislmf --extra
