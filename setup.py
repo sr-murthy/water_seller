@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='water-seller',
-    version='0.1.0',
+    version='0.2.0',
     author='maxwell flitton',
     author_email='maxwellflitton@gmail.com',
     packages=find_packages(exclude=("tests",)),
