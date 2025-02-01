@@ -26,6 +26,22 @@ def main() -> None:
     )
 
     parser.add_argument(
+        "--ktools-enable-osx",
+        required=False,
+        action="store_true",
+        default=False,
+        help="Enable OS X / Mac specific configuration / compilation options when building ktools"
+    )
+
+    parser.add_argument(
+        "--ktools-enable-o3",
+        required=False,
+        action="store_true",
+        default=True,
+        help="Enable level 3 compiler optimisations when building ktools"
+    )
+
+    parser.add_argument(
         "-m", "--mdk-branch",
         required=False,
         type=str,
@@ -66,7 +82,11 @@ def main() -> None:
     )
     clone_ktools.clone_repo()
 
-    compile_ktools: CompileKtools = CompileKtools(ktools_path=clone_ktools.package_path, disable_parquet=args.ktools_disable_parquet)
+    compile_ktools: CompileKtools = CompileKtools(
+        ktools_path=clone_ktools.package_path,
+        enable_osx=args.ktools_enable_osx,
+        enable_o3=args.ktools_enable_o3,
+        disable_parquet=args.ktools_disable_parquet)
     compile_ktools.compile()
 
     package_ktools: PackageKtools = PackageKtools(ktools_path=clone_ktools.package_path)
